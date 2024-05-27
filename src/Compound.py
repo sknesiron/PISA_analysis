@@ -67,7 +67,6 @@ class Sample(Compound):
         self.result = pd.concat([self.df, self.control_df], axis=1)
         self.result[f"{self.name}_mean"] = self.df.mean(axis=1)
         self.result[f"{self.control.name}_mean"] = self.control_df.mean(axis=1)
-        print(self.result)
 
     def ttest(self):
         ttest_result = ttest_ind(self.df, self.control_df, axis=1)
@@ -110,8 +109,8 @@ class Sample(Compound):
         fig.suptitle(f"{self.name}", fontsize=10)
         fig.tight_layout()
 
-    def save_results(self):
-        working_folder = Path(self.file).parent
+    def save_results(self, folder):
+        working_folder = Path(folder)
         main_result_folder = (
             working_folder
             / f"{datetime.today().strftime('%Y%m%d')}_{Path(self.file).stem}"

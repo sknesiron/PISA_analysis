@@ -68,7 +68,7 @@ class Dataset(MutableSequence):
         for sample in self._list:
             sample.check_significance(alpha=alpha, foldchange=foldchange)
 
-    def save_results(self, alpha, foldchange):
+    def save_results(self, alpha, foldchange, folder):
         for sample in self._list:
             sample.plot_results(alpha=alpha, foldchange=foldchange)
-            sample.save_results()
+            sample.save_results(folder)
